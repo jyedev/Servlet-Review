@@ -13,6 +13,7 @@
   <servlet>
   	<servlet-name>xmlmapping</servlet-name>
   	<servlet-class>com.greedy.section01.xml.LifeCycleTestServlet</servlet-class>
+  	<load-on-startup>100</load-on-startup>
   </servlet>
   <servlet-mapping>
   	<servlet-name>xmlmapping</servlet-name>
