@@ -1,8 +1,11 @@
 package com.greedy.section01.cookie;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +19,40 @@ public class RedirectServlet extends HttpServlet {
 		
 		System.out.println("firstName : " + firstName);
 		System.out.println("lastName : " + lastName);
+		
+		Cookie[] cookies = request.getCookies();
+		
+		for(int i = 0; i < cookies.length; i++) {
+			System.out.println("[cookie] " + cookies[i].getName() + " : " + cookies[i].getValue());
+			
+			if("firstName".equals(cookies[i].getName())) {
+				firstName = cookies[i].getValue();
+			} else if("lastName".equals(cookies[i].getName())){
+				lastName = cookies[i].getValue();
+			}
+		}
+		
+		StringBuilder responseText = new StringBuilder();
+		responseText.append("<!doctype html>\n")
+					.append("<html>\n")
+					.append("<head>\n")
+					.append("</head>\n")
+					.append("<body>\n")
+					.append("<h3>your first name is ")
+					.append(firstName)
+					.append(" and last name is ")
+					.append(lastName)
+					.append("</h3>")
+					.append("</body>\n")
+					.append("</html>\n");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		out.print(responseText.toString());
+		
+		out.flush();
+		out.close();
 	}
 
 }
