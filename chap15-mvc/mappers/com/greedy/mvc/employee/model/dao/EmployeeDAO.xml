@@ -33,5 +33,71 @@
 		WHERE ENT_YN = 'N'
 		  AND EMP_ID = #{ empId }
 	</select>
+	
+	<select id="selectAllEmp" resultMap="employeeResultMap">
+				SELECT
+		       EMP_ID
+		     , EMP_NAME
+		     , EMAIL
+		     , EMP_NO
+		     , PHONE
+		     , DEPT_CODE
+		     , JOB_CODE
+		     , SAL_LEVEL
+		     , SALARY
+		     , BONUS
+		     , MANAGER_ID
+		     , HIRE_DATE
+		     , ENT_DATE
+		     , ENT_YN
+		  FROM EMPLOYEE
+		 WHERE ENT_YN = 'N' 
+	</select>
+	
+	<insert id="insertEmp" parameterType="com.greedy.mvc.employee.model.dto.EmployeeDTO">
+				INSERT
+		  INTO EMPLOYEE
+		(
+		  EMP_ID
+		, EMP_NAME
+		, EMP_NO
+		, EMAIL
+		, PHONE
+		, DEPT_CODE
+		, JOB_CODE
+		, SAL_LEVEL
+		, SALARY
+		, BONUS
+		, MANAGER_ID
+		, HIRE_DATE
+		, ENT_DATE
+		, ENT_YN
+		)
+		VALUES
+		(
+		  SEQ_EMP_ID.NEXTVAL
+		, #{ empName }
+		, #{ empNo }
+		, #{ email }
+		, #{ phone }
+		, #{ deptCode }
+		, #{ jobCode }
+		, #{ salLevel }
+		, #{ salary }
+		, #{ bonus }
+		, #{ managerId }
+		, #{ hireDate }
+		, NULL
+		, DEFAULT 
+		)
+	</insert>
+	
+	<update id="updateEmp">
+		UPDATE
+			   EMPLOYEE
+		   SET ENT_DATE = #{ entDate }
+		     , ENT_YN = 'Y'
+		 WHERE EMP_ID = #{ empId }
+	</update>
 
 </mapper>
