@@ -8,27 +8,33 @@
 </head>
 <body>
 	<script>
-		(function(){
-			
-			const successCode = '${ requestScope.successCode }';
-			
-			let successMessage = '';
-			let movePath = '';
-			
-			switch(successCode){
-			case 'insertEmp'
-				successMessage = '신규 직원 등록에 성공하셨습니다.';
-				movePath = '${ pageContext.servletContext.contextpath }'
-				break;
-			case 'updateEmp'
-				successMessage = '직원 퇴사 처리에 성공하셨습니다.';
-				movePath = '${ pageContext.servletContext.contextPath }'
-				break;
-			}
-			
-			alert(successMessage);
-			location.href = movePath;
-		})
+	(function(){
+		
+		const successCode = '${ requestScope.successCode }';
+		
+		let successMessage = '';
+		let movePath = '';
+		
+		switch(successCode){
+		case 'insertEmp' :
+			successMessage = '신규 직원 등록에 성공하셨습니다.';
+			movePath = '${ pageContext.servletContext.contextPath }';
+			break;
+		case 'updateEmp' :
+			successMessage = '직원 퇴사 처리에 성공하셨습니다.';
+			movePath = '${ pageContext.servletContext.contextPath }';
+			break;
+		case 'deleteEmp' :
+			successMessage = '직원 삭제 처리에 성공하셨습니다.';
+			movePath = '${ pageContext.servletContext.contextPath }';
+			break;
+		}
+		
+		alert(successMessage);
+		location.href = movePath;
+		
+		
+	})();
 	</script>
 </body>
 </html>
